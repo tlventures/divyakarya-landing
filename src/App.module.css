@@ -47,7 +47,7 @@
   align-items: center;
   justify-content: center;
   text-align: center;
-  padding: 80px 24px 60px;
+  padding: 36px 24px 28px;
   z-index: 1;
   overflow: hidden;
 }
@@ -104,7 +104,7 @@
 }
 
 .heroDivider {
-  margin: 20px auto;
+  margin: 10px auto;
   display: flex;
   align-items: center;
   gap: 12px;
@@ -132,7 +132,7 @@
   display: inline-flex;
   align-items: center;
   gap: 8px;
-  margin-top: 28px;
+  margin-top: 14px;
   background: linear-gradient(135deg, var(--maroon), var(--maroon-light));
   color: var(--gold-pale);
   font-size: 0.8rem;
@@ -162,7 +162,7 @@
 .products {
   position: relative;
   z-index: 1;
-  padding: 60px 24px 72px;
+  padding: 28px 24px 32px;
   max-width: 1000px;
   margin: 0 auto;
   width: 100%;
@@ -173,7 +173,7 @@
   font-size: clamp(1.3rem, 3vw, 1.9rem);
   color: var(--maroon);
   text-align: center;
-  margin-bottom: 48px;
+  margin-bottom: 20px;
   position: relative;
 }
 
@@ -197,7 +197,7 @@
   background: linear-gradient(145deg, #ffffff, var(--cream-dark));
   border: 1px solid rgba(200, 148, 26, 0.25);
   border-radius: 20px;
-  padding: 40px 32px 36px;
+  padding: 24px 24px 20px;
   position: relative;
   overflow: hidden;
   transition: transform 0.25s ease, box-shadow 0.25s ease;
@@ -230,11 +230,11 @@
   border: 1px solid var(--saffron);
   border-radius: 999px;
   padding: 3px 12px;
-  margin-bottom: 20px;
+  margin-bottom: 10px;
 }
 
 .cardIcon {
-  margin-bottom: 16px;
+  margin-bottom: 8px;
   animation: float 3.5s ease-in-out infinite;
 }
 
@@ -261,7 +261,7 @@
   font-weight: 500;
   letter-spacing: 0.05em;
   text-transform: uppercase;
-  margin-bottom: 16px;
+  margin-bottom: 8px;
 }
 
 .cardDesc {
@@ -273,7 +273,7 @@
 .cardDivider {
   height: 1px;
   background: linear-gradient(90deg, transparent, rgba(200, 148, 26, 0.3), transparent);
-  margin-top: 28px;
+  margin-top: 14px;
 }
 
 /* ═══════════════════════════════════════════════
@@ -283,7 +283,7 @@
   position: relative;
   z-index: 1;
   background: linear-gradient(160deg, var(--maroon) 0%, #4A0E0E 100%);
-  padding: 72px 24px 80px;
+  padding: 36px 24px 40px;
   text-align: center;
 }
 
@@ -306,14 +306,14 @@
   font-family: 'Cinzel Decorative', serif;
   font-size: clamp(1.5rem, 4vw, 2.2rem);
   color: var(--gold-light);
-  margin: 16px 0 12px;
+  margin: 10px 0 8px;
 }
 
 .waitlistSub {
   font-size: 1rem;
   color: rgba(255, 243, 224, 0.75);
   line-height: 1.7;
-  margin-bottom: 36px;
+  margin-bottom: 20px;
 }
 
 /* ─── Form ─── */
@@ -428,7 +428,7 @@
   background: rgba(255,255,255,0.06);
   border: 1px solid rgba(212, 175, 55, 0.3);
   border-radius: 16px;
-  padding: 36px 28px;
+  padding: 20px 24px;
   animation: fadeUp 0.5s ease both;
 }
 
@@ -454,7 +454,7 @@
   position: relative;
   z-index: 1;
   background: var(--cream-dark);
-  padding: 36px 24px 32px;
+  padding: 18px 24px 16px;
   text-align: center;
   border-top: 1px solid rgba(200,148,26,0.15);
 }
@@ -464,7 +464,7 @@
   align-items: center;
   justify-content: center;
   gap: 8px;
-  margin-bottom: 20px;
+  margin-bottom: 10px;
 }
 
 .footerDot {
@@ -484,9 +484,9 @@
 
 .footerOm {
   font-family: 'Tiro Devanagari Sanskrit', serif;
-  font-size: 2rem;
+  font-size: 1.6rem;
   color: var(--gold);
-  margin-bottom: 12px;
+  margin-bottom: 6px;
 }
 
 .footerText {
@@ -506,7 +506,7 @@
 ═══════════════════════════════════════════════ */
 @media (max-width: 600px) {
   .card {
-    padding: 32px 24px 28px;
+    padding: 20px 18px 16px;
   }
   .inputRow {
     flex-direction: column;
