@@ -98,7 +98,7 @@ export default function App() {
         </div>
         <div className={styles.navPill}>
           <span className={styles.dot} />
-          Launching 2025
+          Launching Soon
         </div>
       </nav>
 
