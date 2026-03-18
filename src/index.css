@@ -1,0 +1,61 @@
+:root {
+  --saffron: #FF8C00;
+  --saffron-light: #FFA83E;
+  --saffron-pale: #FFF3E0;
+  --maroon: #7B1818;
+  --maroon-light: #A02020;
+  --gold: #C8941A;
+  --gold-light: #D4AF37;
+  --gold-pale: #FBF0D0;
+  --cream: #FFF8EE;
+  --cream-dark: #F5EDDA;
+  --text-dark: #1A0800;
+  --text-mid: #4A2800;
+  --text-soft: #7A5230;
+}
+
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: 'Inter', sans-serif;
+  background-color: var(--cream);
+  color: var(--text-dark);
+  overflow-x: hidden;
+}
+
+/* ---- Utility ---- */
+.serif {
+  font-family: 'Cinzel Decorative', serif;
+}
+.devanagari {
+  font-family: 'Tiro Devanagari Sanskrit', serif;
+}
+
+/* ---- Decorative border pattern ---- */
+@keyframes borderPulse {
+  0%, 100% { opacity: 0.6; }
+  50% { opacity: 1; }
+}
+
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(24px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes spin-slow {
+  from { transform: rotate(0deg); }
+  to   { transform: rotate(360deg); }
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0px); }
+  50%       { transform: translateY(-8px); }
+}
