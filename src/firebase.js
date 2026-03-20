@@ -21,10 +21,20 @@ export async function addToWaitlist(email, interest) {
     return { success: false, duplicate: true }
   }
 
+  const timestamp = new Date().toISOString()
+
   await addDoc(collection(db, 'waitlist'), {
     email,
     interest, // 'panchanga' | 'pandit' | 'both'
-    joinedAt: new Date().toISOString(),
+    joinedAt: timestamp,
   })
+
+  // Mirror to Google Sheets (fire-and-forget — a Sheets failure won't surface to the user)
+  fetch('/api/waitlist', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ email, interest, timestamp }),
+  }).catch((err) => console.warn('[sheets sync]', err.message))
+
   return { success: true, duplicate: false }
 }
