@@ -5,12 +5,10 @@ import { google } from 'googleapis'
  * Appends a new waitlist signup row to Google Sheets.
  *
  * Required env vars (set in Vercel dashboard):
- *   GOOGLE_SERVICE_ACCOUNT_EMAIL   – service account client_email
- *   GOOGLE_PRIVATE_KEY             – service account private_key (with literal \n)
- *   GOOGLE_SHEET_ID                – the spreadsheet ID from its URL
+ *   GOOGLE_SERVICE_ACCOUNT_JSON  – full service account JSON (single-line)
+ *   GOOGLE_SHEET_ID              – the spreadsheet ID from its URL
  */
 export default async function handler(req, res) {
-  // Allow only POST
   if (req.method !== 'POST') {
     return res.status(405).json({ error: 'Method not allowed' })
   }
@@ -22,10 +20,12 @@ export default async function handler(req, res) {
   }
 
   try {
-    const auth = new google.auth.JWT({
-      email: process.env.GOOGLE_SERVICE_ACCOUNT_EMAIL,
-      // Vercel stores the key with literal \n — replace them with real newlines
-      key: (process.env.GOOGLE_PRIVATE_KEY ?? '').replace(/\\n/g, '\n'),
+    // Parse the full service account JSON — private_key \n escapes are handled
+    // automatically by JSON.parse, so no manual replacement needed.
+    const credentials = JSON.parse(process.env.GOOGLE_SERVICE_ACCOUNT_JSON ?? '{}')
+
+    const auth = new google.auth.GoogleAuth({
+      credentials,
       scopes: ['https://www.googleapis.com/auth/spreadsheets'],
     })
 
@@ -49,7 +49,6 @@ export default async function handler(req, res) {
     return res.status(200).json({ success: true })
   } catch (err) {
     console.error('[waitlist] Sheets write error:', err.message)
-    // Return 200 so a Sheets hiccup doesn't break the user-facing form
-    return res.status(200).json({ success: false, sheetsError: true })
+    return res.status(200).json({ success: false, sheetsError: true, debug: err.message })
   }
 }
