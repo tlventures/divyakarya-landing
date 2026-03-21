@@ -20,9 +20,12 @@ export default async function handler(req, res) {
   }
 
   try {
-    // Parse the full service account JSON — private_key \n escapes are handled
-    // automatically by JSON.parse, so no manual replacement needed.
-    const credentials = JSON.parse(process.env.GOOGLE_SERVICE_ACCOUNT_JSON ?? '{}')
+    const rawJson = process.env.GOOGLE_SERVICE_ACCOUNT_JSON ?? ''
+    console.log('[waitlist] JSON env length:', rawJson.length)
+    console.log('[waitlist] Sheet ID:', process.env.GOOGLE_SHEET_ID)
+
+    const credentials = JSON.parse(rawJson)
+    console.log('[waitlist] Parsed SA email:', credentials.client_email)
 
     const auth = new google.auth.GoogleAuth({
       credentials,
