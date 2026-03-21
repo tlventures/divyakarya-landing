@@ -20,12 +20,7 @@ export default async function handler(req, res) {
   }
 
   try {
-    const rawJson = process.env.GOOGLE_SERVICE_ACCOUNT_JSON ?? ''
-    console.log('[waitlist] JSON env length:', rawJson.length)
-    console.log('[waitlist] Sheet ID:', process.env.GOOGLE_SHEET_ID)
-
-    const credentials = JSON.parse(rawJson)
-    console.log('[waitlist] Parsed SA email:', credentials.client_email)
+    const credentials = JSON.parse(process.env.GOOGLE_SERVICE_ACCOUNT_JSON ?? '{}')
 
     const auth = new google.auth.GoogleAuth({
       credentials,
@@ -34,9 +29,11 @@ export default async function handler(req, res) {
 
     const sheets = google.sheets({ version: 'v4', auth })
 
-    // Append a row: [Email, Interest, ISO Timestamp, Human-readable date (IST)]
+    // .trim() guards against accidental whitespace/newlines in the env var
+    const spreadsheetId = (process.env.GOOGLE_SHEET_ID ?? '').trim()
+
     await sheets.spreadsheets.values.append({
-      spreadsheetId: process.env.GOOGLE_SHEET_ID,
+      spreadsheetId,
       range: 'Waitlist!A:D',
       valueInputOption: 'USER_ENTERED',
       requestBody: {
@@ -51,17 +48,7 @@ export default async function handler(req, res) {
 
     return res.status(200).json({ success: true })
   } catch (err) {
-    const rawJson = process.env.GOOGLE_SERVICE_ACCOUNT_JSON ?? ''
-    const sheetId = process.env.GOOGLE_SHEET_ID ?? 'MISSING'
-    let parsedEmail = 'parse-failed'
-    try { parsedEmail = JSON.parse(rawJson).client_email } catch(_) {}
-    return res.status(200).json({
-      success: false,
-      sheetsError: true,
-      debug: err.message,
-      jsonLen: rawJson.length,
-      sheetId,
-      parsedEmail,
-    })
+    console.error('[waitlist] Sheets write error:', err.message)
+    return res.status(200).json({ success: false, sheetsError: true, debug: err.message })
   }
 }
