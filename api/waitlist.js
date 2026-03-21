@@ -51,7 +51,17 @@ export default async function handler(req, res) {
 
     return res.status(200).json({ success: true })
   } catch (err) {
-    console.error('[waitlist] Sheets write error:', err.message)
-    return res.status(200).json({ success: false, sheetsError: true, debug: err.message })
+    const rawJson = process.env.GOOGLE_SERVICE_ACCOUNT_JSON ?? ''
+    const sheetId = process.env.GOOGLE_SHEET_ID ?? 'MISSING'
+    let parsedEmail = 'parse-failed'
+    try { parsedEmail = JSON.parse(rawJson).client_email } catch(_) {}
+    return res.status(200).json({
+      success: false,
+      sheetsError: true,
+      debug: err.message,
+      jsonLen: rawJson.length,
+      sheetId,
+      parsedEmail,
+    })
   }
 }
