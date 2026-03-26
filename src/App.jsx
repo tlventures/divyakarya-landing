@@ -136,9 +136,14 @@ export default function App() {
       </main>
 
       <footer className={styles.footer}>
-        <span>© {new Date().getFullYear()} DivyaKarya</span>
+        <span>© {new Date().getFullYear()} Tarunilakshmi Ventures OPC Pvt Ltd</span>
         <span className={styles.footerSep}>·</span>
         <span>Made with devotion in India 🇮🇳</span>
+        <div style={{ marginTop: '8px', fontSize: '0.85rem', opacity: 0.7 }}>
+          <a href="/privacy-policy" style={{ color: 'inherit', marginRight: '16px' }}>Privacy Policy</a>
+          <a href="/terms" style={{ color: 'inherit', marginRight: '16px' }}>Terms of Service</a>
+          <a href="/support" style={{ color: 'inherit' }}>Support</a>
+        </div>
       </footer>
     </div>
   )
