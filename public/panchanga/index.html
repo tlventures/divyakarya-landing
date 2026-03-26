@@ -1,0 +1,481 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DivyaKarya Panchanga — Your Daily Vedic Guide</title>
+    <meta name="description" content="DivyaKarya Panchanga - Your daily Vedic guide. Get accurate Panchang, Hora, Choghadiya, Muhurtha, Horoscope and more in Telugu, Tamil, Gujarati, Marathi & English.">
+    <link rel="icon" type="image/png" href="/divyakarya-icon.png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@400;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        :root {
+            --saffron: #FF9933;
+            --gold: #FFB300;
+            --dark-bg: #1a1a2e;
+            --dark-card: #16213e;
+            --dark-surface: #0f3460;
+            --text-primary: #f0e6d3;
+            --text-secondary: #b8a88a;
+        }
+
+        body {
+            font-family: 'Inter', system-ui, -apple-system, sans-serif;
+            background: var(--dark-bg);
+            color: var(--text-primary);
+            line-height: 1.7;
+            overflow-x: hidden;
+        }
+
+        /* Decorative background */
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background:
+                radial-gradient(ellipse at 20% 0%, rgba(255, 153, 51, 0.08) 0%, transparent 50%),
+                radial-gradient(ellipse at 80% 100%, rgba(255, 179, 0, 0.06) 0%, transparent 50%);
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        section, header, footer, nav { position: relative; z-index: 1; }
+
+        /* Navigation */
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 16px 24px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        .nav-brand {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            text-decoration: none;
+            color: var(--text-primary);
+        }
+        .nav-brand img {
+            width: 36px;
+            height: 36px;
+            border-radius: 8px;
+        }
+        .nav-brand span {
+            font-family: 'Cinzel Decorative', serif;
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: var(--saffron);
+        }
+        .nav-links { display: flex; gap: 24px; }
+        .nav-links a {
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-size: 0.9rem;
+            transition: color 0.3s;
+        }
+        .nav-links a:hover { color: var(--saffron); }
+
+        /* Hero Section */
+        .hero {
+            text-align: center;
+            padding: 60px 24px 80px;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+        .hero-icon {
+            width: 120px;
+            height: 120px;
+            border-radius: 28px;
+            box-shadow: 0 8px 40px rgba(255, 153, 51, 0.3), 0 0 80px rgba(255, 153, 51, 0.1);
+            margin-bottom: 32px;
+            animation: float 3s ease-in-out infinite;
+        }
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+        .hero h1 {
+            font-family: 'Cinzel Decorative', serif;
+            font-size: clamp(2rem, 5vw, 3.2rem);
+            background: linear-gradient(135deg, var(--saffron), var(--gold), #fff5e1);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 16px;
+            line-height: 1.3;
+        }
+        .hero .tagline {
+            font-size: 1.3rem;
+            color: var(--text-secondary);
+            margin-bottom: 12px;
+            font-weight: 300;
+        }
+        .hero .languages {
+            font-size: 0.95rem;
+            color: var(--gold);
+            margin-bottom: 36px;
+            font-weight: 500;
+            letter-spacing: 0.5px;
+        }
+        .hero .languages span {
+            display: inline-block;
+            margin: 0 3px;
+        }
+        .download-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 12px;
+            background: linear-gradient(135deg, var(--saffron), #e67e22);
+            color: #fff;
+            text-decoration: none;
+            padding: 16px 36px;
+            border-radius: 50px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            box-shadow: 0 4px 24px rgba(255, 153, 51, 0.4);
+            transition: all 0.3s ease;
+        }
+        .download-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 32px rgba(255, 153, 51, 0.5);
+        }
+        .download-btn svg {
+            width: 24px;
+            height: 24px;
+            fill: white;
+        }
+
+        /* Divider */
+        .divider {
+            text-align: center;
+            padding: 0 24px;
+            margin: 0 auto;
+            max-width: 600px;
+        }
+        .divider::before {
+            content: '';
+            display: block;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, var(--saffron), transparent);
+        }
+        .divider-symbol {
+            display: inline-block;
+            margin-top: -12px;
+            background: var(--dark-bg);
+            padding: 0 16px;
+            color: var(--gold);
+            font-size: 1.2rem;
+        }
+
+        /* Features Section */
+        .features {
+            padding: 60px 24px 80px;
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+        .features h2 {
+            text-align: center;
+            font-family: 'Cinzel Decorative', serif;
+            font-size: 1.8rem;
+            color: var(--gold);
+            margin-bottom: 48px;
+        }
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 20px;
+        }
+        .feature-card {
+            background: linear-gradient(145deg, var(--dark-card), rgba(15, 52, 96, 0.5));
+            border: 1px solid rgba(255, 153, 51, 0.12);
+            border-radius: 16px;
+            padding: 24px;
+            transition: all 0.3s ease;
+        }
+        .feature-card:hover {
+            border-color: rgba(255, 153, 51, 0.3);
+            transform: translateY(-3px);
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.3);
+        }
+        .feature-icon {
+            font-size: 2rem;
+            margin-bottom: 12px;
+            display: block;
+        }
+        .feature-card h3 {
+            font-size: 1.05rem;
+            color: var(--saffron);
+            margin-bottom: 8px;
+            font-weight: 600;
+        }
+        .feature-card p {
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+            line-height: 1.6;
+        }
+
+        /* Screenshots Section */
+        .screenshots {
+            padding: 60px 24px 80px;
+            max-width: 1100px;
+            margin: 0 auto;
+            text-align: center;
+        }
+        .screenshots h2 {
+            font-family: 'Cinzel Decorative', serif;
+            font-size: 1.8rem;
+            color: var(--gold);
+            margin-bottom: 48px;
+        }
+        .screenshots-scroll {
+            display: flex;
+            gap: 20px;
+            overflow-x: auto;
+            padding: 20px 0 30px;
+            scroll-snap-type: x mandatory;
+            -webkit-overflow-scrolling: touch;
+        }
+        .screenshots-scroll::-webkit-scrollbar { height: 6px; }
+        .screenshots-scroll::-webkit-scrollbar-track { background: rgba(255,255,255,0.05); border-radius: 3px; }
+        .screenshots-scroll::-webkit-scrollbar-thumb { background: var(--saffron); border-radius: 3px; }
+        .screenshot-placeholder {
+            flex: 0 0 auto;
+            width: 220px;
+            height: 440px;
+            background: linear-gradient(180deg, var(--dark-card), var(--dark-surface));
+            border: 1px solid rgba(255, 153, 51, 0.15);
+            border-radius: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+            scroll-snap-align: center;
+        }
+        .screenshot-placeholder .phone-icon {
+            font-size: 2.5rem;
+            opacity: 0.4;
+        }
+        .screenshot-placeholder span {
+            color: var(--text-secondary);
+            font-size: 0.8rem;
+            opacity: 0.6;
+        }
+
+        /* CTA Section */
+        .cta {
+            text-align: center;
+            padding: 60px 24px 80px;
+            background: linear-gradient(180deg, transparent, rgba(255, 153, 51, 0.05));
+        }
+        .cta h2 {
+            font-family: 'Cinzel Decorative', serif;
+            font-size: 1.6rem;
+            color: var(--gold);
+            margin-bottom: 16px;
+        }
+        .cta p {
+            color: var(--text-secondary);
+            margin-bottom: 28px;
+            font-size: 1.05rem;
+        }
+
+        /* Footer */
+        footer {
+            text-align: center;
+            padding: 32px 24px;
+            border-top: 1px solid rgba(255, 153, 51, 0.1);
+        }
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 24px;
+            margin-bottom: 16px;
+            flex-wrap: wrap;
+        }
+        .footer-links a {
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-size: 0.9rem;
+            transition: color 0.3s;
+        }
+        .footer-links a:hover { color: var(--saffron); }
+        .copyright {
+            color: rgba(184, 168, 138, 0.6);
+            font-size: 0.8rem;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .nav-links { display: none; }
+            .hero { padding: 40px 20px 60px; }
+            .hero-icon { width: 90px; height: 90px; border-radius: 22px; }
+            .features-grid { grid-template-columns: 1fr; }
+            .screenshot-placeholder { width: 180px; height: 360px; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Navigation -->
+    <nav>
+        <a href="/panchanga" class="nav-brand">
+            <img src="/divyakarya-icon.png" alt="DivyaKarya">
+            <span>DivyaKarya</span>
+        </a>
+        <div class="nav-links">
+            <a href="#features">Features</a>
+            <a href="#screenshots">Screenshots</a>
+            <a href="/support">Support</a>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <img src="/divyakarya-icon.png" alt="DivyaKarya Panchanga" class="hero-icon">
+        <h1>DivyaKarya Panchanga</h1>
+        <p class="tagline">Your Daily Vedic Guide</p>
+        <p class="languages">
+            Available in <span>Telugu</span> &bull; <span>Tamil</span> &bull; <span>Gujarati</span> &bull; <span>Marathi</span> &amp; <span>English</span>
+        </p>
+        <a href="https://play.google.com/store/apps/details?id=com.divyakarya.panchanga" class="download-btn" target="_blank" rel="noopener">
+            <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M3.609 1.814L13.792 12 3.61 22.186a.996.996 0 01-.61-.92V2.734a1 1 0 01.609-.92zm10.89 10.893l2.302 2.302-10.937 6.333 8.635-8.635zm3.199-3.199l2.302 2.302a1 1 0 010 1.38l-2.302 2.302L15.395 12l2.302-2.492zM5.864 3.458L16.8 9.79l-2.302 2.302-8.635-8.635z"/></svg>
+            Download on Google Play
+        </a>
+    </section>
+
+    <div class="divider">
+        <span class="divider-symbol">&#x2726;</span>
+    </div>
+
+    <!-- Features Section -->
+    <section class="features" id="features">
+        <h2>Features</h2>
+        <div class="features-grid">
+
+            <div class="feature-card">
+                <span class="feature-icon">&#x1F319;</span>
+                <h3>Daily Panchang</h3>
+                <p>Accurate Tithi, Nakshatra, Yoga, Karana, and Vara calculated for your exact location with sunrise and sunset times.</p>
+            </div>
+
+            <div class="feature-card">
+                <span class="feature-icon">&#x23F0;</span>
+                <h3>Hora &amp; Choghadiya</h3>
+                <p>Planetary hora timings and Choghadiya periods to find the most auspicious moments throughout the day.</p>
+            </div>
+
+            <div class="feature-card">
+                <span class="feature-icon">&#x2728;</span>
+                <h3>Gowri Panchangam &amp; Nalla Neram</h3>
+                <p>South Indian Gowri Panchangam timings and Tamil Nalla Neram (auspicious time) for daily activities.</p>
+            </div>
+
+            <div class="feature-card">
+                <span class="feature-icon">&#x1F4C5;</span>
+                <h3>Muhurtha Finder</h3>
+                <p>Find auspicious muhurthas for important events like griha pravesham, travel, new ventures, and more.</p>
+            </div>
+
+            <div class="feature-card">
+                <span class="feature-icon">&#x1F46A;</span>
+                <h3>Tarabalam &amp; Chandrashtama</h3>
+                <p>Personalized Tarabalam and Chandrashtama calculations for you and your entire family based on birth nakshatras.</p>
+            </div>
+
+            <div class="feature-card">
+                <span class="feature-icon">&#x1F4FF;</span>
+                <h3>Sacred Stotras Library</h3>
+                <p>Collection of 20+ sacred stotras and mantras with text in multiple scripts for daily devotional practice.</p>
+            </div>
+
+            <div class="feature-card">
+                <span class="feature-icon">&#x2648;</span>
+                <h3>Daily Horoscope</h3>
+                <p>Personalized daily horoscope predictions for all 12 zodiac signs (Rashi Phalam) in your preferred language.</p>
+            </div>
+
+            <div class="feature-card">
+                <span class="feature-icon">&#x1F4E4;</span>
+                <h3>Shareable Panchanga Card</h3>
+                <p>Generate and share beautiful daily panchanga summary cards with family and friends on WhatsApp and social media.</p>
+            </div>
+
+            <div class="feature-card">
+                <span class="feature-icon">&#x1F4F6;</span>
+                <h3>Works Offline</h3>
+                <p>Core panchanga calculations work entirely offline. No internet needed for daily Tithi, Nakshatra, Hora, and more.</p>
+            </div>
+
+            <div class="feature-card">
+                <span class="feature-icon">&#x1F916;</span>
+                <h3>AI Pandit Guide</h3>
+                <p>Ask questions about Vedic traditions, rituals, and panchanga meanings with our intelligent AI Pandit assistant.</p>
+            </div>
+
+        </div>
+    </section>
+
+    <div class="divider">
+        <span class="divider-symbol">&#x2726;</span>
+    </div>
+
+    <!-- Screenshots Section -->
+    <section class="screenshots" id="screenshots">
+        <h2>App Screenshots</h2>
+        <div class="screenshots-scroll">
+            <div class="screenshot-placeholder">
+                <span class="phone-icon">&#x1F4F1;</span>
+                <span>Daily Panchang</span>
+            </div>
+            <div class="screenshot-placeholder">
+                <span class="phone-icon">&#x1F4F1;</span>
+                <span>Hora Timings</span>
+            </div>
+            <div class="screenshot-placeholder">
+                <span class="phone-icon">&#x1F4F1;</span>
+                <span>Muhurtha</span>
+            </div>
+            <div class="screenshot-placeholder">
+                <span class="phone-icon">&#x1F4F1;</span>
+                <span>Stotras</span>
+            </div>
+            <div class="screenshot-placeholder">
+                <span class="phone-icon">&#x1F4F1;</span>
+                <span>Horoscope</span>
+            </div>
+            <div class="screenshot-placeholder">
+                <span class="phone-icon">&#x1F4F1;</span>
+                <span>AI Pandit</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta">
+        <h2>Begin Your Vedic Journey</h2>
+        <p>Download DivyaKarya Panchanga and bring ancient wisdom to your daily life.</p>
+        <a href="https://play.google.com/store/apps/details?id=com.divyakarya.panchanga" class="download-btn" target="_blank" rel="noopener">
+            <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" style="width:24px;height:24px;fill:white"><path d="M3.609 1.814L13.792 12 3.61 22.186a.996.996 0 01-.61-.92V2.734a1 1 0 01.609-.92zm10.89 10.893l2.302 2.302-10.937 6.333 8.635-8.635zm3.199-3.199l2.302 2.302a1 1 0 010 1.38l-2.302 2.302L15.395 12l2.302-2.492zM5.864 3.458L16.8 9.79l-2.302 2.302-8.635-8.635z"/></svg>
+            Get it on Google Play
+        </a>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-links">
+            <a href="/privacy-policy">Privacy Policy</a>
+            <a href="/terms">Terms of Service</a>
+            <a href="/support">Support</a>
+            <a href="/">Home</a>
+        </div>
+        <p class="copyright">&copy; 2026 Tarunilakshmi Ventures OPC Pvt Ltd. All rights reserved.</p>
+    </footer>
+
+</body>
+</html>

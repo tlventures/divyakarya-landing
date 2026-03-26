@@ -4,30 +4,141 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Support - DivyaKarya Panchanga</title>
+    <link rel="icon" type="image/png" href="/divyakarya-icon.png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@400;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
-        body { font-family: 'Segoe UI', system-ui, -apple-system, sans-serif; background: #FFF8EF; color: #24313A; line-height: 1.7; }
-        .header { background: linear-gradient(135deg, #FF8A00, #FF6D00, #E65100); color: white; padding: 40px 20px; text-align: center; }
-        .header h1 { font-size: 2rem; margin-bottom: 6px; }
-        .header p { opacity: 0.85; }
-        .header a { color: white; text-decoration: underline; opacity: 0.9; }
-        .container { max-width: 800px; margin: 0 auto; padding: 40px 20px 60px; }
-        h2 { color: #E65100; margin: 28px 0 12px; font-size: 1.3rem; }
-        p { margin-bottom: 14px; color: #3a3a3a; }
-        .contact-card { background: white; border-radius: 16px; padding: 24px; box-shadow: 0 2px 8px rgba(0,0,0,0.06); margin: 20px 0; }
-        .contact-card h3 { color: #E65100; margin-bottom: 12px; }
-        .faq { background: white; border-radius: 12px; padding: 16px 20px; margin: 12px 0; box-shadow: 0 1px 4px rgba(0,0,0,0.04); }
-        .faq h3 { font-size: 1rem; margin-bottom: 8px; }
+        :root {
+            --saffron: #FF9933;
+            --gold: #FFB300;
+            --dark-bg: #1a1a2e;
+            --dark-card: #16213e;
+            --dark-surface: #0f3460;
+            --text-primary: #f0e6d3;
+            --text-secondary: #b8a88a;
+        }
+        body {
+            font-family: 'Inter', system-ui, -apple-system, sans-serif;
+            background: var(--dark-bg);
+            color: var(--text-primary);
+            line-height: 1.7;
+        }
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background: radial-gradient(ellipse at 50% 0%, rgba(255,153,51,0.06) 0%, transparent 50%);
+            pointer-events: none;
+            z-index: 0;
+        }
+        .header {
+            position: relative; z-index: 1;
+            background: linear-gradient(135deg, rgba(255,153,51,0.15), rgba(255,179,0,0.08));
+            border-bottom: 1px solid rgba(255,153,51,0.15);
+            padding: 40px 20px;
+            text-align: center;
+        }
+        .header-brand {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 12px;
+        }
+        .header-brand img { width: 36px; height: 36px; border-radius: 8px; }
+        .header h1 {
+            font-family: 'Cinzel Decorative', serif;
+            font-size: 2rem;
+            background: linear-gradient(135deg, var(--saffron), var(--gold));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 6px;
+        }
+        .header p { color: var(--text-secondary); font-size: 0.95rem; }
+        .header a { color: var(--saffron); text-decoration: none; }
+        .header a:hover { text-decoration: underline; }
+        .container {
+            position: relative; z-index: 1;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 40px 20px 60px;
+        }
+        h2 {
+            color: var(--saffron);
+            margin: 28px 0 12px;
+            font-size: 1.3rem;
+        }
+        p { margin-bottom: 14px; color: var(--text-secondary); }
+        .contact-card {
+            background: linear-gradient(145deg, var(--dark-card), rgba(15,52,96,0.5));
+            border: 1px solid rgba(255,153,51,0.15);
+            border-radius: 16px;
+            padding: 28px;
+            margin: 20px 0;
+        }
+        .contact-card h3 {
+            color: var(--gold);
+            margin-bottom: 16px;
+            font-size: 1.2rem;
+        }
+        .contact-card p { margin-bottom: 10px; }
+        .contact-card strong { color: var(--text-primary); }
+        .email-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: linear-gradient(135deg, var(--saffron), #e67e22);
+            color: #fff;
+            text-decoration: none;
+            padding: 12px 28px;
+            border-radius: 50px;
+            font-size: 1rem;
+            font-weight: 600;
+            margin-top: 12px;
+            box-shadow: 0 4px 20px rgba(255,153,51,0.3);
+            transition: all 0.3s;
+        }
+        .email-link:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 28px rgba(255,153,51,0.4);
+        }
+        .faq {
+            background: linear-gradient(145deg, var(--dark-card), rgba(15,52,96,0.3));
+            border: 1px solid rgba(255,153,51,0.1);
+            border-radius: 12px;
+            padding: 20px 24px;
+            margin: 14px 0;
+            transition: border-color 0.3s;
+        }
+        .faq:hover { border-color: rgba(255,153,51,0.25); }
+        .faq h3 {
+            font-size: 1rem;
+            margin-bottom: 8px;
+            color: var(--text-primary);
+        }
         .faq p { font-size: 0.95rem; margin-bottom: 0; }
-        footer { text-align: center; padding: 24px; color: #6A7680; font-size: 0.85rem; border-top: 1px solid #eee; }
-        footer a { color: #E65100; text-decoration: none; }
+        .faq a { color: var(--saffron); }
+        footer {
+            position: relative; z-index: 1;
+            text-align: center;
+            padding: 24px;
+            border-top: 1px solid rgba(255,153,51,0.1);
+        }
+        footer p { color: rgba(184,168,138,0.6); font-size: 0.85rem; }
+        footer a { color: var(--text-secondary); text-decoration: none; font-size: 0.85rem; }
+        footer a:hover { color: var(--saffron); }
     </style>
 </head>
 <body>
     <div class="header">
+        <div class="header-brand">
+            <img src="/divyakarya-icon.png" alt="DivyaKarya">
+        </div>
         <h1>Support</h1>
-        <p>DivyaKarya - Vedic Panchanga</p>
-        <p style="margin-top:8px"><a href="/">Back to Home</a></p>
+        <p>DivyaKarya Panchanga</p>
+        <p style="margin-top:8px"><a href="/panchanga">Back to Home</a></p>
     </div>
     <div class="container">
         <div class="contact-card">
@@ -36,6 +147,7 @@
             <p><strong>Company:</strong> Tarunilakshmi Ventures OPC Pvt Ltd</p>
             <p><strong>Location:</strong> Hyderabad, Telangana, India</p>
             <p>We typically respond within 24-48 hours.</p>
+            <a href="mailto:support@divyakarya.in" class="email-link">Email Support</a>
         </div>
 
         <h2>Frequently Asked Questions</h2>
@@ -72,12 +184,17 @@
 
         <div class="faq">
             <h3>Is my data safe?</h3>
-            <p>All your personal data (name, family details, preferences) is stored only on your device. We do not send any personal information to external servers. See our <a href="/privacy-policy" style="color:#E65100">Privacy Policy</a> for details.</p>
+            <p>All your personal data (name, family details, preferences) is stored only on your device. We do not send any personal information to external servers. See our <a href="/privacy-policy">Privacy Policy</a> for details.</p>
+        </div>
+
+        <div class="faq">
+            <h3>How do I use the AI Pandit?</h3>
+            <p>Navigate to the AI Pandit section from the app menu. You can ask questions about Vedic traditions, panchanga meanings, rituals, and more. Internet connection is required for this feature.</p>
         </div>
     </div>
     <footer>
         <p>&copy; 2026 Tarunilakshmi Ventures OPC Pvt Ltd. All rights reserved.</p>
-        <p style="margin-top:8px"><a href="/">Home</a> &bull; <a href="/privacy-policy">Privacy Policy</a> &bull; <a href="/terms">Terms</a></p>
+        <p style="margin-top:8px"><a href="/panchanga">Home</a> &bull; <a href="/privacy-policy">Privacy Policy</a> &bull; <a href="/terms">Terms</a></p>
     </footer>
 </body>
 </html>
