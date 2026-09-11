@@ -81,7 +81,7 @@ function PlayIcon() {
 //   'live'  → on Google Play, links to the store listing
 //   'soon'  → built, not yet published
 //   'build' → still in development, links to its own page
-function ProductCard({ icon, title, subtitle, desc, status, playUrl, privacyUrl, moreUrl }) {
+function ProductCard({ icon, title, subtitle, desc, status, playUrl, moreUrl }) {
   const badge = {
     live:  { label: 'On Google Play', cls: styles.badgeLive },
     soon:  { label: 'Coming Soon',    cls: styles.cardBadge },
@@ -100,22 +100,18 @@ function ProductCard({ icon, title, subtitle, desc, status, playUrl, privacyUrl,
       <p className={styles.cardSubtitle}>{subtitle}</p>
       <p className={styles.cardDesc}>{desc}</p>
 
+      {(status === 'live' || (status === 'build' && moreUrl)) && (
       <div className={styles.cardActions}>
         {status === 'live' && (
           <a className={styles.storeBtn} href={playUrl} target="_blank" rel="noopener noreferrer">
             <PlayIcon />Get it on Google Play
           </a>
         )}
-        {status === 'soon' && (
-          <span className={styles.storeBtnMuted}>Coming soon to Google Play</span>
-        )}
         {status === 'build' && moreUrl && (
           <a className={styles.ghostBtn} href={moreUrl}>Learn more</a>
         )}
-        {privacyUrl && (
-          <a className={styles.cardPolicy} href={privacyUrl}>Privacy Policy</a>
-        )}
       </div>
+      )}
     </div>
   )
 }
@@ -134,10 +130,6 @@ export default function App() {
             <span className={styles.logoSub}>दिव्य कार्य</span>
           </div>
         </div>
-        <div className={styles.navPill}>
-          <span className={styles.dot} />
-          Panchanga is live
-        </div>
       </nav>
 
       <main className={styles.main}>
@@ -152,25 +144,23 @@ export default function App() {
           <ProductCard
             status="live"
             icon="/assets/icon-panchanga.png"
-            title="DivyaKarya Panchanga"
+            title="Panchanga"
             subtitle="The Sacred Hindu Calendar"
             desc="Daily Tithi, Nakshatra, Yoga, Rahu Kalam & auspicious Muhurtas — computed offline, personalised to your location."
             playUrl="https://play.google.com/store/apps/details?id=com.divyakarya.panchanga"
-            privacyUrl="/privacy-policy"
           />
           <ProductCard
             status="soon"
             icon="/assets/icon-ai-pandit.png"
-            title="DivyaKarya AI Pandit"
+            title="AI Pandit"
             subtitle="Your Personal Vedic Astrology Guide"
             desc="Your full birth chart, Dasha periods and transits — plus an AI pandit that answers in the context of your own kundali."
-            privacyUrl="/privacy/ai-pandit"
           />
           <ProductCard
             status="build"
             icon={null}
-            title="DivyaKarya Pandits"
-            subtitle="Pandit on Demand"
+            title="Pandits"
+            subtitle="Booked On Demand"
             desc="Verified Pandits for Griha Pravesh, Vivah, Satyanarayan Puja & more — at your home, on your schedule."
             moreUrl="/pandits"
           />
@@ -179,7 +169,7 @@ export default function App() {
         <div className={styles.waitlist}>
           <p className={styles.waitlistLabel}>
             <span className={styles.waitlistLine} />
-            Be first to know when the next one lands
+            Get notified at launch
             <span className={styles.waitlistLine} />
           </p>
           <WaitlistForm />

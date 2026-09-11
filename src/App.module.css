@@ -70,28 +70,7 @@
   letter-spacing: 0.06em;
 }
 
-.navPill {
-  display: flex;
-  align-items: center;
-  gap: 7px;
-  font-size: 0.75rem;
-  font-weight: 500;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  color: var(--text-soft);
-  background: rgba(200, 148, 26, 0.1);
-  border: 1px solid rgba(200, 148, 26, 0.25);
-  border-radius: 999px;
-  padding: 5px 14px;
-}
 
-.dot {
-  width: 6px;
-  height: 6px;
-  border-radius: 50%;
-  background: var(--saffron);
-  animation: blink 1.6s ease-in-out infinite;
-}
 
 @keyframes blink {
   0%, 100% { opacity: 1; }
@@ -242,7 +221,6 @@
 }
 
 .storeBtn,
-.storeBtnMuted,
 .ghostBtn {
   display: inline-flex;
   align-items: center;
@@ -264,13 +242,6 @@
 }
 .storeBtn:hover { filter: brightness(1.07); }
 
-.storeBtnMuted {
-  background: rgba(200,148,26,0.1);
-  color: var(--text-soft);
-  border: 1px dashed rgba(200,148,26,0.4);
-  cursor: default;
-}
-
 .ghostBtn {
   background: transparent;
   color: var(--maroon);
@@ -281,13 +252,6 @@
 
 .playIcon { width: 14px; height: 14px; flex: none; }
 
-.cardPolicy {
-  font-size: 0.72rem;
-  color: var(--text-soft);
-  text-decoration: none;
-  border-bottom: 1px dotted rgba(122,82,48,0.5);
-}
-.cardPolicy:hover { color: var(--maroon); border-bottom-color: var(--maroon); }
 
 /* Panchanga is actually shipping — say so in green, not in the
    same saffron as the two that are not out yet. */
@@ -482,10 +446,7 @@
   .root { height: auto; min-height: 100vh; overflow: auto; }
   .cardGrid { grid-template-columns: 1fr; }
   .footer { flex-wrap: wrap; text-align: center; }
-  /* "Panchanga is live" is longer than the old "Launching Soon" and was
-     overlapping the wordmark on a 375px screen. */
   .navbar { padding: 0 14px; gap: 10px; }
-  .navPill { font-size: 0.62rem; padding: 4px 9px; letter-spacing: 0.05em; white-space: nowrap; }
   .logoName { font-size: 0.92rem; }
   .footerLinks { width: 100%; justify-content: center; margin: 6px 0 0; }
   .inputRow { flex-direction: column; }
