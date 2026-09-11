@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Privacy Policies - DivyaKarya</title>
+<meta name="description" content="Privacy policies for DivyaKarya apps. Each app has its own policy.">
+<link rel="icon" type="image/png" href="/divyakarya-icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@400;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  *{margin:0;padding:0;box-sizing:border-box}
+  :root{
+    --saffron:#FF9933; --gold:#FFB300;
+    --dark-bg:#1a1a2e; --dark-card:#16213e;
+    --text-primary:#f0e6d3; --text-secondary:#b8a88a;
+    --line:rgba(255,153,51,.15);
+  }
+  body{font-family:'Inter',system-ui,-apple-system,sans-serif;background:var(--dark-bg);color:var(--text-primary);line-height:1.7}
+  body::before{content:'';position:fixed;inset:0;pointer-events:none;z-index:0;
+    background:radial-gradient(ellipse at 20% 0%,rgba(255,153,51,.06) 0%,transparent 50%)}
+  .header{position:relative;z-index:1;text-align:center;padding:40px 20px;
+    background:linear-gradient(135deg,rgba(255,153,51,.15),rgba(255,179,0,.08));
+    border-bottom:1px solid var(--line)}
+  .header h1{font-family:'Cinzel Decorative',serif;font-size:2rem;margin-bottom:6px;
+    background:linear-gradient(135deg,var(--saffron),var(--gold));
+    -webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
+  .header p{color:var(--text-secondary);font-size:.95rem}
+  .header a{color:var(--saffron);text-decoration:none}
+  .container{position:relative;z-index:1;max-width:760px;margin:0 auto;padding:40px 20px 60px}
+  .lead{color:var(--text-secondary);text-align:center;margin-bottom:30px;font-size:.98rem}
+  .card{display:grid;grid-template-columns:64px 1fr;gap:18px;align-items:center;
+    background:var(--dark-card);border:1px solid var(--line);border-radius:16px;
+    padding:22px;margin-bottom:16px;text-decoration:none;transition:border-color .15s ease}
+  .card:hover{border-color:rgba(255,153,51,.4)}
+  .card img{width:64px;height:64px;border-radius:14px;object-fit:cover}
+  .card h2{color:var(--text-primary);font-size:1.1rem;margin-bottom:3px}
+  .card p{color:var(--text-secondary);font-size:.88rem;margin:0}
+  .card .go{color:var(--saffron);font-size:.85rem;font-weight:600;margin-top:6px;display:block}
+  .footer{position:relative;z-index:1;text-align:center;padding:30px 20px 44px;
+    border-top:1px solid rgba(255,255,255,.07);color:var(--text-secondary);font-size:.85rem}
+  .footer a{color:var(--saffron);text-decoration:none}
+  @media (max-width:560px){.card{grid-template-columns:1fr}.card img{width:54px;height:54px}}
+</style>
+</head>
+<body>
+
+<div class="header">
+  <h1>Privacy Policies</h1>
+  <p><a href="/">Back to Home</a></p>
+</div>
+
+<div class="container">
+  <p class="lead">Our apps handle your data differently, so each one has its own policy. Please read the one for the app you use.</p>
+
+  <a class="card" href="/privacy-policy">
+    <img src="/assets/icon-panchanga.png" alt="">
+    <div>
+      <h2>DivyaKarya Panchanga</h2>
+      <p>No account needed. Your data stays on your device.</p>
+      <span class="go">Read the Panchanga policy &rarr;</span>
+    </div>
+  </a>
+
+  <a class="card" href="/privacy/ai-pandit">
+    <img src="/assets/icon-ai-pandit.png" alt="">
+    <div>
+      <h2>DivyaKarya AI Pandit</h2>
+      <p>Requires an account. Your chart and conversations are stored so they follow you between devices.</p>
+      <span class="go">Read the AI Pandit policy &rarr;</span>
+    </div>
+  </a>
+</div>
+
+<div class="footer">
+  <p>&copy; 2026 Tarunilakshmi Ventures OPC Pvt Ltd. All rights reserved.</p>
+  <p style="margin-top:8px"><a href="/">Home</a> &bull; <a href="/terms">Terms</a> &bull; <a href="/support">Support</a></p>
+</div>
+
+</body>
+</html>

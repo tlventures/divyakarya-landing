@@ -36,7 +36,7 @@ function WaitlistForm() {
     <form className={styles.form} onSubmit={handleSubmit} noValidate>
       <div className={styles.interestRow}>
         {[
-          { value: 'panchanga', label: 'Panchanga' },
+          { value: 'astrology', label: 'AI Pandit' },
           { value: 'pandit',    label: 'Pandit Service' },
           { value: 'both',      label: 'Both' },
         ].map(({ value, label }) => (
@@ -67,17 +67,55 @@ function WaitlistForm() {
   )
 }
 
+// ─── Google Play glyph ────────────────────────────────────────────────────────
+function PlayIcon() {
+  return (
+    <svg className={styles.playIcon} viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+      <path d="M3.6 2.1a1 1 0 0 0-.5.9v18a1 1 0 0 0 .5.9l10-9.9-10-9.9Zm11.1 8.5 2.9-2.9-9-5.1 6.1 8ZM4.9 21.6l9-5.1-2.9-2.9-6.1 8Zm12.9-8.4 2.7-1.5c.8-.5.8-1.7 0-2.1l-2.7-1.6-3.2 3.2 3.2 3.2Z" />
+    </svg>
+  )
+}
+
 // ─── Product Card ─────────────────────────────────────────────────────────────
-function ProductCard({ icon, title, subtitle, desc }) {
+// `status` drives the badge and the call to action:
+//   'live'  → on Google Play, links to the store listing
+//   'soon'  → built, not yet published
+//   'build' → still in development, links to its own page
+function ProductCard({ icon, title, subtitle, desc, status, playUrl, privacyUrl, moreUrl }) {
+  const badge = {
+    live:  { label: 'On Google Play', cls: styles.badgeLive },
+    soon:  { label: 'Coming Soon',    cls: styles.cardBadge },
+    build: { label: 'In Development', cls: styles.cardBadge },
+  }[status]
+
   return (
     <div className={styles.card}>
       <div className={styles.cardTop}>
-        <span className={styles.cardIcon}>{icon}</span>
-        <span className={styles.cardBadge}>Coming Soon</span>
+        {icon
+          ? <img className={styles.cardIconImg} src={icon} alt="" />
+          : <span className={styles.cardIconPlaceholder} aria-hidden="true" />}
+        <span className={badge.cls}>{badge.label}</span>
       </div>
       <h3 className={styles.cardTitle}>{title}</h3>
       <p className={styles.cardSubtitle}>{subtitle}</p>
       <p className={styles.cardDesc}>{desc}</p>
+
+      <div className={styles.cardActions}>
+        {status === 'live' && (
+          <a className={styles.storeBtn} href={playUrl} target="_blank" rel="noopener noreferrer">
+            <PlayIcon />Get it on Google Play
+          </a>
+        )}
+        {status === 'soon' && (
+          <span className={styles.storeBtnMuted}>Coming soon to Google Play</span>
+        )}
+        {status === 'build' && moreUrl && (
+          <a className={styles.ghostBtn} href={moreUrl}>Learn more</a>
+        )}
+        {privacyUrl && (
+          <a className={styles.cardPolicy} href={privacyUrl}>Privacy Policy</a>
+        )}
+      </div>
     </div>
   )
 }
@@ -98,7 +136,7 @@ export default function App() {
         </div>
         <div className={styles.navPill}>
           <span className={styles.dot} />
-          Launching Soon
+          Panchanga is live
         </div>
       </nav>
 
@@ -112,23 +150,36 @@ export default function App() {
 
         <div className={styles.cardGrid}>
           <ProductCard
-            icon="📅"
+            status="live"
+            icon="/assets/icon-panchanga.png"
             title="DivyaKarya Panchanga"
             subtitle="The Sacred Hindu Calendar"
-            desc="Daily Tithi, Nakshatra, Yoga, Rahu Kalam & auspicious Muhurtas — personalized to your location."
+            desc="Daily Tithi, Nakshatra, Yoga, Rahu Kalam & auspicious Muhurtas — computed offline, personalised to your location."
+            playUrl="https://play.google.com/store/apps/details?id=com.divyakarya.panchanga"
+            privacyUrl="/privacy-policy"
           />
           <ProductCard
-            icon="🪔"
-            title="DivyaKarya"
+            status="soon"
+            icon="/assets/icon-ai-pandit.png"
+            title="DivyaKarya AI Pandit"
+            subtitle="Your Personal Vedic Astrology Guide"
+            desc="Your full birth chart, Dasha periods and transits — plus an AI pandit that answers in the context of your own kundali."
+            privacyUrl="/privacy/ai-pandit"
+          />
+          <ProductCard
+            status="build"
+            icon={null}
+            title="DivyaKarya Pandits"
             subtitle="Pandit on Demand"
             desc="Verified Pandits for Griha Pravesh, Vivah, Satyanarayan Puja & more — at your home, on your schedule."
+            moreUrl="/pandits"
           />
         </div>
 
         <div className={styles.waitlist}>
           <p className={styles.waitlistLabel}>
             <span className={styles.waitlistLine} />
-            Be among the first to know
+            Be first to know when the next one lands
             <span className={styles.waitlistLine} />
           </p>
           <WaitlistForm />
@@ -139,10 +190,10 @@ export default function App() {
         <span>© {new Date().getFullYear()} Tarunilakshmi Ventures OPC Pvt Ltd</span>
         <span className={styles.footerSep}>·</span>
         <span>Made with devotion in India 🇮🇳</span>
-        <div style={{ marginTop: '8px', fontSize: '0.85rem', opacity: 0.7 }}>
-          <a href="/privacy-policy" style={{ color: 'inherit', marginRight: '16px' }}>Privacy Policy</a>
-          <a href="/terms" style={{ color: 'inherit', marginRight: '16px' }}>Terms of Service</a>
-          <a href="/support" style={{ color: 'inherit' }}>Support</a>
+        <div className={styles.footerLinks}>
+          <a href="/privacy">Privacy</a>
+          <a href="/terms">Terms of Service</a>
+          <a href="/support">Support</a>
         </div>
       </footer>
     </div>
