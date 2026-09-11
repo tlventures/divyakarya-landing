@@ -1,6 +1,10 @@
 /**
- * Submits a waitlist signup directly to the Vercel serverless function,
- * which writes to Google Sheets. No Firebase dependency required.
+ * Submits a waitlist signup to the Vercel serverless function in
+ * api/waitlist.js, which appends it to the Google Sheet.
+ *
+ * Firebase was the original backend; it was dropped in e0cb44d and this file
+ * kept its old name for a while, which made the long-removed `firebase`
+ * dependency look load-bearing.
  */
 export async function addToWaitlist(email, interest) {
   const timestamp = new Date().toISOString()

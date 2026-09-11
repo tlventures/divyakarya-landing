@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { addToWaitlist } from './firebase'
+import { addToWaitlist } from './waitlist'
 import HinduCanvas from './HinduCanvas'
 import styles from './App.module.css'
 
