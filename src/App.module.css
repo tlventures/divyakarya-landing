@@ -70,28 +70,7 @@
   letter-spacing: 0.06em;
 }
 
-.navPill {
-  display: flex;
-  align-items: center;
-  gap: 7px;
-  font-size: 0.75rem;
-  font-weight: 500;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  color: var(--text-soft);
-  background: rgba(200, 148, 26, 0.1);
-  border: 1px solid rgba(200, 148, 26, 0.25);
-  border-radius: 999px;
-  padding: 5px 14px;
-}
 
-.dot {
-  width: 6px;
-  height: 6px;
-  border-radius: 50%;
-  background: var(--saffron);
-  animation: blink 1.6s ease-in-out infinite;
-}
 
 @keyframes blink {
   0%, 100% { opacity: 1; }
@@ -139,11 +118,13 @@
 /* ─── Cards ─── */
 .cardGrid {
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: repeat(3, 1fr);
   gap: 16px;
 }
 
 .card {
+  display: flex;
+  flex-direction: column;
   background: linear-gradient(145deg, rgba(255,255,255,0.92), rgba(245,237,218,0.88));
   border: 1px solid rgba(200, 148, 26, 0.28);
   border-radius: 16px;
@@ -175,8 +156,24 @@
   margin-bottom: 8px;
 }
 
-.cardIcon {
-  font-size: 1.8rem;
+.cardIconImg {
+  width: 46px;
+  height: 46px;
+  border-radius: 11px;
+  object-fit: cover;
+  box-shadow: 0 2px 8px rgba(123, 24, 24, 0.18);
+  flex: none;
+}
+
+/* DivyaKarya Pandits has no app icon yet — hold the same space so the three
+   card headers stay on one baseline instead of the third riding up. */
+.cardIconPlaceholder {
+  width: 46px;
+  height: 46px;
+  border-radius: 11px;
+  flex: none;
+  border: 1px dashed rgba(200, 148, 26, 0.45);
+  background: rgba(255, 243, 224, 0.5);
 }
 
 .cardBadge {
@@ -211,6 +208,64 @@
   font-size: 0.82rem;
   color: var(--text-soft);
   line-height: 1.6;
+  flex: 1;
+}
+
+/* ── Card actions ───────────────────────────────────────── */
+.cardActions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px 12px;
+  margin-top: 14px;
+}
+
+.storeBtn,
+.ghostBtn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 7px;
+  font-size: 0.78rem;
+  font-weight: 600;
+  padding: 8px 14px;
+  border-radius: 9px;
+  text-decoration: none;
+  white-space: nowrap;
+}
+
+.storeBtn {
+  background: linear-gradient(135deg, var(--saffron), var(--gold-light));
+  color: #2A1200;
+  border: 1px solid rgba(200,148,26,0.5);
+  transition: filter 0.15s ease;
+}
+.storeBtn:hover { filter: brightness(1.07); }
+
+.ghostBtn {
+  background: transparent;
+  color: var(--maroon);
+  border: 1px solid rgba(200,148,26,0.45);
+  transition: background 0.15s ease;
+}
+.ghostBtn:hover { background: rgba(200,148,26,0.08); }
+
+.playIcon { width: 14px; height: 14px; flex: none; }
+
+
+/* Panchanga is actually shipping — say so in green, not in the
+   same saffron as the two that are not out yet. */
+.badgeLive {
+  font-size: 0.65rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #1F7A46;
+  background: rgba(31,122,70,0.1);
+  border: 1px solid rgba(31,122,70,0.32);
+  border-radius: 999px;
+  padding: 2px 10px;
+  white-space: nowrap;
 }
 
 /* ─── Waitlist section ─── */
@@ -367,12 +422,33 @@
 
 .footerSep { color: var(--gold); opacity: 0.5; }
 
+.footerLinks {
+  display: flex;
+  gap: 14px;
+  margin-left: 4px;
+}
+.footerLinks a {
+  color: inherit;
+  text-decoration: none;
+  opacity: 0.8;
+}
+.footerLinks a:hover { opacity: 1; text-decoration: underline; }
+
 /* ═══════════════════════════════════════════════
    RESPONSIVE — mobile stacks to scrollable
 ═══════════════════════════════════════════════ */
+@media (max-width: 980px) {
+  .root { height: auto; min-height: 100vh; overflow: auto; }
+  .cardGrid { grid-template-columns: 1fr 1fr; }
+}
+
 @media (max-width: 640px) {
   .root { height: auto; min-height: 100vh; overflow: auto; }
   .cardGrid { grid-template-columns: 1fr; }
+  .footer { flex-wrap: wrap; text-align: center; }
+  .navbar { padding: 0 14px; gap: 10px; }
+  .logoName { font-size: 0.92rem; }
+  .footerLinks { width: 100%; justify-content: center; margin: 6px 0 0; }
   .inputRow { flex-direction: column; }
   .submitBtn { width: 100%; }
   .main { padding: 14px 16px 12px; gap: 14px; justify-content: flex-start; }
