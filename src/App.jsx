@@ -182,6 +182,7 @@ export default function App() {
         <span>Made with devotion in India 🇮🇳</span>
         <div className={styles.footerLinks}>
           <a href="/privacy">Privacy</a>
+          <a href="/delete-account">Delete Account</a>
           <a href="/terms">Terms of Service</a>
           <a href="/support">Support</a>
         </div>
