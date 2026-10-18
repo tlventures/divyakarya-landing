@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Delete Your Account &amp; Data - DivyaKarya</title>
+<meta name="description" content="Request deletion of your DivyaKarya account and the data associated with it.">
+<link rel="icon" type="image/png" href="/divyakarya-icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@400;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  *{margin:0;padding:0;box-sizing:border-box}
+  :root{
+    --saffron:#FF9933; --gold:#FFB300;
+    --dark-bg:#1a1a2e; --dark-card:#16213e;
+    --text-primary:#f0e6d3; --text-secondary:#b8a88a;
+    --line:rgba(255,153,51,.15);
+    --danger:#E05C5C;
+  }
+  body{font-family:'Inter',system-ui,-apple-system,sans-serif;background:var(--dark-bg);
+    color:var(--text-primary);line-height:1.7}
+  body::before{content:'';position:fixed;inset:0;pointer-events:none;z-index:0;
+    background:radial-gradient(ellipse at 20% 0%,rgba(255,153,51,.06) 0%,transparent 50%)}
+  .header{position:relative;z-index:1;text-align:center;padding:40px 20px;
+    background:linear-gradient(135deg,rgba(255,153,51,.15),rgba(255,179,0,.08));
+    border-bottom:1px solid var(--line)}
+  .header-brand{display:inline-flex;align-items:center;gap:10px;margin-bottom:12px}
+  .header-brand img{width:36px;height:36px;border-radius:8px}
+  .header-brand span{color:var(--text-secondary);font-size:.95rem}
+  .header h1{font-family:'Cinzel Decorative',serif;font-size:1.9rem;margin-bottom:6px;
+    background:linear-gradient(135deg,var(--saffron),var(--gold));
+    -webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
+  .header p{color:var(--text-secondary);font-size:.95rem}
+  .header a{color:var(--saffron);text-decoration:none}
+  .header a:hover{text-decoration:underline}
+  .container{position:relative;z-index:1;max-width:760px;margin:0 auto;padding:40px 20px 60px}
+  h2{color:var(--saffron);margin:30px 0 12px;font-size:1.2rem}
+  h2:first-child{margin-top:0}
+  p{margin-bottom:12px}
+  ul{margin:0 0 14px 22px}
+  li{margin-bottom:7px}
+  strong{color:var(--gold)}
+  a{color:var(--saffron)}
+  table{width:100%;border-collapse:collapse;margin:8px 0 18px;font-size:.92rem}
+  th,td{text-align:left;padding:10px 12px;border-bottom:1px solid rgba(255,255,255,.08);vertical-align:top}
+  th{color:var(--gold);font-weight:600}
+  td{color:var(--text-secondary)}
+  .card{background:var(--dark-card);border:1px solid var(--line);border-radius:14px;
+    padding:24px;margin-top:8px}
+  .field{margin-bottom:16px}
+  label{display:block;font-size:.88rem;font-weight:600;color:var(--text-primary);margin-bottom:6px}
+  .hint{font-size:.8rem;color:var(--text-secondary);font-weight:400;margin-top:4px}
+  input[type=email],textarea,select{
+    width:100%;padding:11px 13px;border-radius:9px;font-family:inherit;font-size:.95rem;
+    background:rgba(0,0,0,.25);border:1px solid rgba(255,255,255,.14);color:var(--text-primary)}
+  input[type=email]:focus,textarea:focus,select:focus{outline:none;border-color:var(--saffron)}
+  textarea{resize:vertical;min-height:72px}
+  .radio{display:flex;align-items:flex-start;gap:10px;padding:11px 13px;border-radius:9px;
+    border:1px solid rgba(255,255,255,.12);margin-bottom:8px;cursor:pointer;background:rgba(0,0,0,.15)}
+  .radio:hover{border-color:rgba(255,153,51,.4)}
+  .radio input{margin-top:4px;accent-color:var(--saffron);flex:none}
+  .radio span{font-size:.9rem}
+  .radio b{display:block;color:var(--text-primary);font-size:.92rem;margin-bottom:2px}
+  button{width:100%;padding:13px 20px;border:none;border-radius:10px;cursor:pointer;
+    font-family:inherit;font-size:.98rem;font-weight:700;
+    background:linear-gradient(135deg,#C94A4A,var(--danger));color:#fff;transition:filter .15s}
+  button:hover:not(:disabled){filter:brightness(1.08)}
+  button:disabled{opacity:.6;cursor:default}
+  .msg{margin-top:14px;padding:13px 15px;border-radius:9px;font-size:.92rem;display:none}
+  .msg.ok{display:block;background:rgba(76,175,122,.12);border:1px solid rgba(76,175,122,.35);color:#7FD6A2}
+  .msg.err{display:block;background:rgba(224,92,92,.12);border:1px solid rgba(224,92,92,.35);color:#F09A9A}
+  .note{background:rgba(255,153,51,.08);border:1px solid var(--line);border-left:3px solid var(--saffron);
+    padding:14px 16px;border-radius:9px;margin:18px 0;font-size:.92rem}
+  .footer{position:relative;z-index:1;text-align:center;padding:30px 20px 44px;
+    border-top:1px solid rgba(255,255,255,.07);color:var(--text-secondary);font-size:.85rem}
+  .footer a{color:var(--saffron);text-decoration:none}
+  .footer a:hover{text-decoration:underline}
+  @media (max-width:560px){
+    table,thead,tbody,tr,th,td{display:block}
+    thead{display:none}
+    tr{border-bottom:1px solid rgba(255,255,255,.08);padding:8px 0}
+    th,td{border:none;padding:3px 0}
+    td:first-child{color:var(--gold);font-weight:600}
+  }
+</style>
+</head>
+<body>
+
+<div class="header">
+  <div class="header-brand">
+    <img src="/assets/icon-ai-pandit.png" alt="">
+    <span>DivyaKarya</span>
+  </div>
+  <h1>Delete Your Account &amp; Data</h1>
+  <p><a href="/">Back to Home</a></p>
+</div>
+
+<div class="container">
+
+  <h2>Which app?</h2>
+  <p><strong>DivyaKarya AI Pandit</strong> uses an account, and your data is stored on our
+  servers. Use the form below to have it deleted.</p>
+  <p><strong>DivyaKarya Panchanga</strong> has no account and stores everything on your own
+  device. There is nothing on our servers to delete — uninstalling the app, or going to
+  <em>Android Settings → Apps → DivyaKarya → Storage → Clear data</em>, removes all of it.
+  You do not need this form.</p>
+
+  <h2>What gets deleted</h2>
+  <table>
+    <thead><tr><th>Data</th><th>What happens</th></tr></thead>
+    <tbody>
+      <tr><td>Account &amp; sign-in</td><td>Deleted — the Firebase Auth record, your email and display name</td></tr>
+      <tr><td>Birth details</td><td>Deleted — date, time and place of birth, gender, derived coordinates</td></tr>
+      <tr><td>Saved family members</td><td>Deleted — every person you added under My Family</td></tr>
+      <tr><td>AI Pandit conversations</td><td>Deleted — your entire stored chat history</td></tr>
+      <tr><td>Journal entries</td><td>Deleted</td></tr>
+      <tr><td>Preferences</td><td>Deleted — ayanamsa, chart style, notification settings</td></tr>
+      <tr><td>Push token</td><td>Deleted — you stop receiving notifications</td></tr>
+    </tbody>
+  </table>
+
+  <h2>What we keep, and why</h2>
+  <table>
+    <thead><tr><th>Data</th><th>Retention</th></tr></thead>
+    <tbody>
+      <tr><td>Purchase &amp; subscription records</td><td>Retained as long as Indian tax and accounting law requires. These are held by Google Play and RevenueCat, not by us, and are not linked to your deleted profile</td></tr>
+      <tr><td>Anonymous analytics &amp; crash reports</td><td>Already not linked to your identity; retained per Firebase defaults and cannot be traced back to you once the account is gone</td></tr>
+      <tr><td>This deletion request</td><td>Kept as a record that you asked and we complied</td></tr>
+    </tbody>
+  </table>
+
+  <div class="note">
+    <strong>Deleting is permanent.</strong> Your chart, conversations and journal cannot be
+    recovered afterwards, on this or any other device. If you only want to stop notifications
+    or revoke location access, you can do that in the app's settings instead.
+  </div>
+
+  <h2>Request deletion</h2>
+  <div class="card">
+    <form id="f" novalidate>
+      <div class="field">
+        <label for="email">The email address on your DivyaKarya account</label>
+        <input type="email" id="email" name="email" placeholder="your@email.com" required autocomplete="email">
+        <div class="hint">If you signed in with Google, use that Google address.</div>
+      </div>
+
+      <div class="field">
+        <label>What would you like removed?</label>
+        <label class="radio">
+          <input type="radio" name="scope" value="account-and-data" checked>
+          <span><b>My account and all my data</b>You will not be able to sign in again. Everything in the first table is erased.</span>
+        </label>
+        <label class="radio">
+          <input type="radio" name="scope" value="data-only">
+          <span><b>Just my data — keep the account</b>Chart, chat history, journal and saved people are erased; you can still sign in and start fresh.</span>
+        </label>
+      </div>
+
+      <div class="field">
+        <label for="note">Anything else we should know? <span class="hint" style="display:inline;font-weight:400">(optional)</span></label>
+        <textarea id="note" name="note" placeholder="Optional"></textarea>
+      </div>
+
+      <button type="submit" id="btn">Request deletion</button>
+      <div class="msg" id="msg"></div>
+    </form>
+  </div>
+
+  <div class="note" style="border-left-color:var(--gold)">
+    <strong>We verify before we delete.</strong> Anyone could type your address into a public
+    form, so we email you first to confirm the request genuinely came from you. Nothing is
+    erased until you reply. Please allow up to <strong>30 days</strong> for the deletion to
+    complete, though it is usually much faster.
+  </div>
+
+  <h2>Prefer email?</h2>
+  <p>Write to <a href="mailto:support@divyakarya.in?subject=Account%20deletion%20request">support@divyakarya.in</a>
+  from your registered address. Mention which app and whether you want the account removed too.</p>
+
+  <p style="margin-top:22px;font-size:.9rem;color:var(--text-secondary)">
+    How we handle your data in the first place is set out in the
+    <a href="/privacy/ai-pandit">AI Pandit privacy policy</a> and the
+    <a href="/privacy-policy">Panchanga privacy policy</a>.
+  </p>
+
+</div>
+
+<div class="footer">
+  <p>&copy; 2026 Tarunilakshmi Ventures OPC Pvt Ltd. All rights reserved.</p>
+  <p style="margin-top:8px">
+    <a href="/">Home</a> &bull;
+    <a href="/privacy">Privacy</a> &bull;
+    <a href="/terms">Terms</a> &bull;
+    <a href="/support">Support</a>
+  </p>
+</div>
+
+<script>
+  var f = document.getElementById('f'),
+      btn = document.getElementById('btn'),
+      msg = document.getElementById('msg');
+
+  function show(kind, text) {
+    msg.className = 'msg ' + kind;
+    msg.textContent = text;
+  }
+
+  f.addEventListener('submit', function (e) {
+    e.preventDefault();
+    var email = document.getElementById('email').value.trim();
+    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+      show('err', 'Please enter a valid email address.');
+      return;
+    }
+    var scope = f.querySelector('input[name=scope]:checked').value;
+
+    btn.disabled = true;
+    btn.textContent = 'Sending…';
+    show('', '');
+
+    fetch('/api/delete-request', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        email: email,
+        app: 'AI Pandit',
+        scope: scope,
+        note: document.getElementById('note').value.trim()
+      })
+    })
+      .then(function (r) { return r.json().then(function (d) { return { ok: r.ok, d: d }; }); })
+      .then(function (res) {
+        if (!res.ok || !res.d.success) throw new Error(res.d.error || 'Request failed');
+        f.querySelector('.field').style.display = 'none';
+        show('ok', 'Request received. We will email ' + email +
+                   ' to confirm it was you, and complete the deletion once you reply.');
+        btn.style.display = 'none';
+      })
+      .catch(function () {
+        btn.disabled = false;
+        btn.textContent = 'Request deletion';
+        show('err', 'Could not submit the request. Please email support@divyakarya.in instead.');
+      });
+  });
+</script>
+
+</body>
+</html>
